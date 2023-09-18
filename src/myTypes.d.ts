@@ -1,19 +1,19 @@
 export interface Friend {
-    name: string;
-    phone: string;
-    dob? : Date;   // New
-    age: number;
-    interests? : string[]   // New
+  name: string;
+  phone: string;
+  dob?: Date;   // New
+  age: number;
+  interests?: string[]   // New
 }
 
 export interface Colleague {
-    name: string;
-    department: string;
-    contact: {
-      email: string;
-      extension: number
-    } 
+  name: string;
+  department: string;
+  contact: {
+    email: string;
+    extension: number
   }
+}
 
 export interface ColleagueHistory {
   current: Colleague[],
@@ -21,8 +21,8 @@ export interface ColleagueHistory {
 }
 
 export interface EmailContact {
-    name: string;
-    email: string
+  name: string;
+  email: string
 }
 
 export type Department = "Engineering" | "Finance" | "HR";
@@ -44,3 +44,15 @@ export type BuddyList = {
   administrator: Administrator;
   members: Buddy[];
 };
+
+export type FriendPartial = Partial<Friend>
+// Type for gaining access to an event, e.g. concert
+export type EventPass = Omit<Colleague, "contact"> & {
+  passCode: number;
+}
+// Make person's properties immutable.
+export type SecureFriendContact = Readonly<Pick<Friend, "name" | "phone">>
+
+export type ColleagueFriend = Omit<Colleague, "department"> & {
+  age: number;
+}
